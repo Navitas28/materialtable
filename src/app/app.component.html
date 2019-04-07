@@ -2,35 +2,16 @@
   <h3>Material Table</h3>
 </div>
 <hr>
+<section class="asset__container">
+<div class="asset__filter">
+  <app-filter></app-filter>
+</div>
 <div class="asset__table">
   <mat-card>
-    <table mat-table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="serialNumber">
-        <th mat-header-cell *matHeaderCellDef>S No.</th>
-        <td mat-cell *matCellDef="let element"> {{ element.assetDetails.serialNumber }}</td>
-      </ng-container>
-      <ng-container matColumnDef="assetTag">
-        <th mat-header-cell *matHeaderCellDef>Asset Tag</th>
-        <td mat-cell *matCellDef="let element"> {{ element.assetDetails.assetTag }}</td>
-      </ng-container>
-      <ng-container matColumnDef="location">
-        <th mat-header-cell *matHeaderCellDef>
-          Location
-        </th>
-        <td mat-cell *matCellDef="let element"> {{ element.assetDetails.location }}</td>
-      </ng-container>
-      <ng-container matColumnDef="assetType">
-        <th mat-header-cell *matHeaderCellDef>Asset Type</th>
-        <td mat-cell *matCellDef="let element"> {{ element.assetDetails.assetType }}</td>
-      </ng-container>
-      <ng-container matColumnDef="model">
-        <th mat-header-cell *matHeaderCellDef>Model</th>
-        <td mat-cell *matCellDef="let element"> {{ element.assetDetails.model }}</td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <app-table [displayColumns]="displayedColumns" [tableData]="toRenderTableData"></app-table>
     <mat-paginator [length]="totalAssetdData" [pageSize]="assetDataPerPage" [pageSizeOptions]="pageSizeOptions"
       (page)="onChangedPage($event)" showFirstLastButtons></mat-paginator>
   </mat-card>
 </div>
+
+</section>

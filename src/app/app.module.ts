@@ -8,22 +8,34 @@ import {
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatExpansionModule,
+  MatListModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterComponent } from './components/filter/filter.component';
+import { FormsModule } from '@angular/forms';
+import { TableComponent } from './components/table/table.component';
+import { PaginationComponent } from './pagcomponents/pagination/pagination.component';
+import { FilterService } from './components/filter/filter.service';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FilterComponent, TableComponent, PaginationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatTableModule,
     MatCardModule,
     MatPaginatorModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatListModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [FilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

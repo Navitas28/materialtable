@@ -17,18 +17,27 @@ export class AssetService {
 
   constructor(private http: HttpClient) {}
 
-  public getAssetData(assetsPerPage: number, currentPage: number) {
+  public getAssetData(
+    assetsPerPage: number,
+    currentPage: number,
+    filters: any
+  ) {
     const queryParams = `?pagesize=${assetsPerPage}&page=${currentPage}`;
     const url = `${this.baseUrl}/asset/fetch-assets`;
-    this.http.post(url + queryParams, {}).subscribe((response: { assetDataFromDB: Asset[], assetDataLength: number}) => {
-      this.assets = response.assetDataFromDB;
-      this.assetsUpdated.next({ assetData: [...this.assets], assetsCount: response.assetDataLength});
-    },
+    this.http.post(url + queryParams, filters).subscribe(
+      (response: { assetDataFromDB: Asset[]; assetDataLength: number }) => {
+        this.assets = response.assetDataFromDB;
+        this.assetsUpdated.next({
+          assetData: [...this.assets],
+          assetsCount: response.assetDataLength
+        });
+      },
       error => {
         console.group('getAssetData API is failing:::');
         console.log(error);
         console.groupEnd();
-      });
+      }
+    );
   }
 
   getAssetsUpdateListener() {

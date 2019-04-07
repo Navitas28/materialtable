@@ -9,3 +9,26 @@ table {
    font-size: 1.6rem;
    display: block;
  }
+
+ .asset__container {
+   display: grid;
+   grid-template-columns: auto 1fr;
+   grid-template-rows: auto;
+   grid-column-gap: 1rem;
+   grid-template-areas: "aside main"
+ }
+
+ .asset__filter {
+   grid-area: aside;
+ }
+
+ .asset__table {
+   grid-area: main;
+ }
+
+mat-checkbox {
+  margin-right: 1rem;
+}
+mat-expansion-panel {
+  margin-bottom: 2.5rem;
+}

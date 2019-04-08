@@ -1,5 +1,4 @@
 const Asset = require('../models/asset-model');
-
 exports.postFetchAssets = async (req, res, next) => {
   const filterData = req.body;
   const filterCriteria = await buildFilterQuery(filterData);
@@ -28,6 +27,19 @@ exports.postFetchAssets = async (req, res, next) => {
     });
   }
 };
+exports.getFilterObject = async (req, res, next) => {
+  try {
+     const assets = await Asset.find().distinct('assetDetails.location');
+     res.status(200).json({
+       assets
+     });
+  } catch(err) {
+    res.status(500).json({
+      err
+    });
+  }
+}
+
 buildFilterQuery = filterData => {
   const filterCriteria = {};
   for (const filter in filterData) {
